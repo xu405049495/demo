@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+
+<body>
+
+  <div id="app">
+    <button @click="choose(1)" :style="{'color':  colorflag===1 ? 'red' : ''} ">新闻</button>
+    <button @click="choose(2)" :style="{'color':  colorflag===2 ? 'red' : ''} ">天气</button>
+    <button @click="choose(3)" :style="{'color':  colorflag===3 ? 'red' : ''} ">运动</button>
+    <div v-if="news">
+      <ul>
+        <li>王宝强</li>
+        <li>周星驰</li>
+      </ul>
+    </div>
+    <div v-if="weather">
+      <ul>
+        <li>晴天</li>
+        <li>雾霾</li>
+      </ul>
+    </div>
+    <div v-if="sport">
+      <ul>
+        <li>足球</li>
+        <li>篮球</li>
+      </ul>
+    </div>
+  </div>
+  <script>
+    new Vue({
+      el: "#app",
+      data: {
+        news: '',
+        weather: '',
+        sport: '',
+        colorflag:''
+      },
+      methods: {
+        choose(id) {
+          this.colorflag=id;
+         // console.log(colorflag);
+          switch (id) {
+            case 1:
+              this.news = true;
+              this.weather = false;
+              this.sport = false;
+              break;
+            case 2:
+              this.news = false;
+              this.weather = true;
+              this.sport = false;
+              break;
+            case 3:
+              this.news = false;
+              this.weather = false;
+              this.sport = true;
+              break;
+          }
+        }
+      }
+
+    })
+  </script>
+
+
+
+</body>
+
+</html>
