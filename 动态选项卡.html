@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+
+<body>
+
+  <div id="app">
+    <button @click="choose(1)" :style="{'color': flag===1 ? 'red' : '' }">新闻</button>
+    <button @click="choose(2)" :style="{'color': flag===2 ? 'red' : '' }">天气</button>
+    <button @click="choose(3)" :style="{'color': flag===3 ? 'red' : '' }">运动</button>
+
+    <ul>
+
+      <li v-for="(item,index) in todos">
+        {{item.content}}
+      </li>
+    </ul>
+  </div>
+  <script>
+    let lists = [{
+        title: "新闻",
+        infos: [{
+          content: "王宝强"
+        }, {
+          content: "周星驰"
+        }]
+      },
+      {
+        title: "天气",
+        infos: [{
+          content: "晴天"
+        }, {
+          content: "雾霾"
+        }]
+      },
+      {
+        title: "运动",
+        infos: [{
+          content: "篮球"
+        }, {
+          content: "足球"
+        }]
+      }
+    ]
+    new Vue({
+      el: "#app",
+      data: {
+        flag: '',
+        todos: []
+      },
+      created () {
+        this.todos = lists.find(arr => arr.title === "新闻").infos;
+      },
+      methods: {
+        choose(id) {
+          this.flag = id;
+          switch (id) {
+            case 1:
+              this.todos = lists.find(arr => arr.title === "新闻").infos;
+              break;
+            case 2:
+              this.todos = lists.find(arr => arr.title === "天气").infos;
+              break;
+            case 3:
+              this.todos = lists.find(arr => arr.title === "运动").infos;
+              break;
+          }
+        }
+      }
+    })
+  </script>
+
+</body>
+
+</html>
