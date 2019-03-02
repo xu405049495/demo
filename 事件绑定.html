@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body>
+  <div id="app">
+     <button @click="choose">测试</button>
+     <button @click="choose2(1,$event)">测试2</button>
+     <button @click="choose3($event,1)">测试3</button>
+  </div>
+  <script>
+     new Vue({
+       el:"#app",
+       methods: {
+         choose(ev){
+            //console.log(this);
+            console.log(ev);
+         },
+         choose2(ev,ss){
+            console.log(ev);
+            console.log(ss);
+         },
+         choose3(ss,ev){
+            console.log(ev);
+            console.log(ss);
+         }
+       }
+     })
+  </script>
+</body>
+</html>

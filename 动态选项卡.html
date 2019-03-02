@@ -56,6 +56,7 @@
         todos: []
       },
       created () {
+        this.flag=1;
         this.todos = lists.find(arr => arr.title === "新闻").infos;
       },
       methods: {
