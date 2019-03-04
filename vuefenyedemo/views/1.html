@@ -16,13 +16,20 @@
 
 <body>
   <div id="app">
+    <input v-model="newVal" type="text" />
+    <button @click="Addtodo">添加</button>
     <ul>
-      <li v-for="(item,index) in todos">{{item.title}}</li>
+      
+      <li v-for="(item,index) in todos">
+          <input type="checkbox" @click="toogle(item.id,!item.done)">
+        {{item.title}}
+      <a href="/remove" @click.prevent ="remove(item.id)">删除</a>
+      </li>
     </ul>
     <a href="" @click.prevent="getId(n)" v-for="n of pageCount">{{n}}</a>
-    <button  @click="changeType('')">所有</button>
-    <button  @click="changeType(1)">已完成</button>
-    <button  @click="changeType(0)">未完成</button>
+    <button @click="changeType('')">所有</button>
+    <button @click="changeType(1)">已完成</button>
+    <button @click="changeType(0)">未完成</button>
 
   </div>
   <script>
@@ -35,12 +42,13 @@
         todos: [],
         pageCount: '',
         indexnum: '',
-        type:''
+        type: '',
+        newVal: ''
       },
       methods: {
         getdata() {
           console.log("下雨了");
-          fetch("/todos?index=" + this.indexnum + "&type="+this.type+"")
+          fetch("/todos?index=" + this.indexnum + "&type=" + this.type + "")
             .then((res) => {
               return res.json();
             })
@@ -53,9 +61,57 @@
           this.indexnum = n;
           this.getdata();
         },
-        changeType(id){
-          this.type=id;
+        changeType(id) {
+          this.type = id;
           this.getdata();
+        },
+        toogle(id,done){
+          fetch('/toogle',{
+            method:"post",
+            headers:{
+              'Content-Type': 'application/json;charset=utf-8'
+            },
+            body:JSON.stringify({id,done})
+          }).then((res)=>{
+              return res.json();
+          }).then((data)=>{
+                console.log(data.code);
+                console.log(data.msg);
+          })
+        },
+        remove(id){
+          fetch('/remove',{
+            method:"post",
+            headers:{"Content-Type":"application/json;charset=utf-8"},
+            body:JSON.stringify({id})
+          }).then((res)=>{
+             return res.json();
+          }).then((data)=>{
+            console.log(data);
+            console.log(typeof data.code);
+            if(data.code==="0"){
+              this.getdata();
+            }
+          })
+        },
+        Addtodo() {
+          console.log(this.newVal);
+          fetch('/add', {
+            method: 'post',
+            headers: {
+              'Content-Type': 'application/json;charset=utf-8'
+            },
+            body: JSON.stringify({
+              title: this.newVal
+            }),
+          }).then((res) =>  {return res.json();})
+          .then((data) => {
+            console.log(data.code);
+            console.log(data.msg);
+         
+            // console.log(data.code);
+          })
+          this.newVal = '';
         }
       }
     })
