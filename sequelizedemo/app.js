@@ -38,10 +38,15 @@
     /* let rs=await todos.count();
     console.log(rs); */
 
-    /*       let rs = await todos.findAndCountAll({
+        /*  let rs = await todos.findAndCountAll({
              limit: 2
          });
-         console.log(rs.rows); */
+         console.log(rs.count);
+         console.log(rs.rows.length);
+         rs.rows.forEach((arr)=>{
+             console.log(arr.title+arr.done);
+         }) */
+
 
     /* let rs =await todos.findAll({
         offset:2,
@@ -97,7 +102,7 @@
     console.log(rs);
     console.log(rs.length); */
     // 关联查询
-    const ContentModel = sequelize.define('contents', {
+    /* const ContentModel = sequelize.define('contents', {
         id: {
             type: Sequelize.INTEGER,
             primaryKey: true,
@@ -121,7 +126,7 @@
         timestamps: false,
         freezeTableName: true,
         tableName: 'contents'
-    });
+    }); */
 
 /*     let rs = await ContentModel.belongsTo(todos, {
         foreignKey: 'uid'
@@ -138,17 +143,17 @@
      console.log(data2.desc);
      console.log(data2); */
 
-     todos.hasMany(ContentModel, {
+  /*    todos.hasMany(ContentModel, {
         foreignKey: 'uid'
     });
 
     let data3 = await todos.findById(3, {
         include: [ContentModel]
-    });
+    }); */
   
 
-    console.log(data3);
-
+   /*  console.log(data3);
+ */
 })();
 
 
