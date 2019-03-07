@@ -1,6 +1,6 @@
 (async function () {
     const Sequelize = require('sequelize');
-    const sequelize = new Sequelize('shopmanagement', 'test', '123', {
+    const sequelize = new Sequelize('nodedemo', 'root', null, {
         host: 'localhost',
         dialect: 'mysql',
     });
@@ -77,77 +77,112 @@
      t1.save().then((msg)=>{
           console.log(msg);
      }); */
-    /* let aa=await todos.findOne({
-        where:{
-            title:"学习koa"
-        }
-    });
-    console.log(aa);
-    */
-    /* let rs=await todos.findAll();
-    console.log(rs); */
+    /*  let aa=await todos.findOne({
+         where:{
+             done:1
+         }
+     });
+     console.log(aa.title);
+     console.log(aa.id); */
+
+    /*    let aa=await todos.findOne();
+       console.log(aa.id);
+       console.log(aa.title); */
+
+    /*  let rs=await todos.findAll();
+    console.log(rs.length); 
+    rs.forEach(element => {
+       console.log(element.title); 
+    }); */
     //根据条件过滤数据
-    /* let rs=await todos.findAll({
-      where:{
-          done:{
-              [Sequelize.Op.eq]:0
+    /*  let rs=await todos.findAll({
+       where:{
+           done:{
+               [Sequelize.Op.eq]:0
+           }
+       }
+     })
+     console.log(rs);
+     console.log(rs.length); */
+    /*   let rs=await todos.findAll({
+          where: {
+            [Sequelize.or]: [{title:'足球'}, {title:'篮球'}]
           }
-      }
-    })
-    console.log(rs);
-    console.log(rs.length); */
-    // 关联查询
-    const ContentModel = sequelize.define('contents', {
-        id: {
-            type: Sequelize.INTEGER,
-            primaryKey: true,
-            allowNull: true,
-            autoIncrement: true
-        },
-        uid: { // 其他的表的字段，把当前字段定义为外键
-            type: Sequelize.INTEGER(10),
-            defaultValue: 0,
-            references: {
-                model: todos,
-                key: 'id'
-            }
-        },
-        desc: {
-            type: Sequelize.STRING(255),
-            allowNull: true,
-            defaultValue: ''
+        }); */
+    let ss = await todos.findAll({
+        where: {
+            [Sequelize.Op.or]: [{
+                count: {
+                    [Sequelize.Op.gt]: 20
+                }
+            }, {
+                done: {
+                    [Sequelize.Op.eq]: 1
+                }
+            }]
         }
-    }, {
-        timestamps: false,
-        freezeTableName: true,
-        tableName: 'contents'
     });
+    console.log(ss.length);
+    /*  let rs=  await  todos.findAll({
+          where: {
+            count: {
+              [Sequelize.Op.or]: [1, 5]
+            }
+          }
+        });
+        console.log(rs.length); */
+    // 关联查询
+    /*  const ContentModel = sequelize.define('contents', {
+         id: {
+             type: Sequelize.INTEGER,
+             primaryKey: true,
+             allowNull: true,
+             autoIncrement: true
+         },
+         uid: { // 其他的表的字段，把当前字段定义为外键
+             type: Sequelize.INTEGER(10),
+             defaultValue: 0,
+             references: {
+                 model: todos,
+                 key: 'id'
+             }
+         },
+         desc: {
+             type: Sequelize.STRING(255),
+             allowNull: true,
+             defaultValue: ''
+         }
+     }, {
+         timestamps: false,
+         freezeTableName: true,
+         tableName: 'contents'
+     }); */
 
-/*     let rs = await ContentModel.belongsTo(todos, {
-        foreignKey: 'uid'
-    });
-    console.log(rs); */
-   /*  ContentModel.belongsTo(todos, {
-         foreignKey: 'uid'
-     });
-   let data2 = await ContentModel.findById(3, {
-         include: [todos]
-     });
+    /*     let rs = await ContentModel.belongsTo(todos, {
+            foreignKey: 'uid'
+        });
+        console.log(rs); */
+    /*  ContentModel.belongsTo(todos, {
+          foreignKey: 'uid'
+      });
+    let data2 = await ContentModel.findById(3, {
+          include: [todos]
+      });
 
-     console.log(data2.todo.title);
-     console.log(data2.desc);
-     console.log(data2); */
+      console.log(data2.todo.title);
+      console.log(data2.desc);
+      console.log(data2); */
+    /* 
+         todos.hasMany(ContentModel, {
+            foreignKey: 'uid'
+        });
 
-     todos.hasMany(ContentModel, {
-        foreignKey: 'uid'
-    });
+        let data3 = await todos.findById(3, {
+            include: [ContentModel]
+        });
+      
 
-    let data3 = await todos.findById(3, {
-        include: [ContentModel]
-    });
-  
-
-    console.log(data3);
+        console.log(data3); */
 
 })();
 
