@@ -15,15 +15,15 @@ module.exports = {
       password:{
         type:Sequelize.STRING(32),
         allowNull:false
-      },
-      createdAt: {
+      }
+     /*  createdAt: {
         allowNull: false,
         type: Sequelize.DATE
       },
       updatedAt: {
         allowNull: false,
         type: Sequelize.DATE
-      }
+      } */
     },{
       tableName:'users',
       charset:'utf8mb4',
