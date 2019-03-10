@@ -16,7 +16,7 @@
     </div>
     <ul class="pagination mb">
       <li class="page-item disabled">
-        <span class="page-link">&lt;</span>
+        <span class="page-link" :class="{disabled:page==1}" @click="getdata(page-1)">&lt;</span>
       </li>
       <li
         class="page-item"
@@ -29,7 +29,7 @@
       </li>
 
       <li class="page-item">
-        <span class="page-link" href="#">&gt;</span>
+        <span class="page-link" :class="{disabled:page==pages}" href="#" @click="getdata(page+1)">&gt;</span>
       </li>
     </ul>
   </div>
@@ -42,9 +42,9 @@ import bus from "../assets/eventBus";
 export default {
   data() {
     return {
-      page:1, //当前页
-      prepage:2, //每页显示多少条
-      pages:0  , //总页数
+      page: 1, //当前页
+      prepage: 2, //每页显示多少条
+      pages: 1, //总页数
       count: 0,
       items: []
       // pagecount: 1
@@ -54,20 +54,26 @@ export default {
     moment: function(date) {
       return moment(date).format("YYYY-MM-DD HH:mm:ss");
     },
-    addTodo(count) {
-      bus.$emit("add-todo", { text: count });
-    },
     getdata(p) {
       console.log(p);
+      if(p==this.page) return;
+      this.page = p || this.page;
+      // 控制this.page 在 1- this.pages 之间 
+      this.page=Math.max(1,this.page);
+      this.page=Math.min(this.pages,this.page);
+
       axios({
         method: "get",
-        url: "http://localhost:8088/"
+        url: "http://localhost:8088/",
+        params:{
+          page:this.page
+        }
       }).then(rs => {
         if (rs.data.code === 0) {
           this.count = rs.data.count;
           this.items = rs.data.data;
-          this.addTodo(rs.data.count);
-          this.pages=Math.ceil(rs.data.count/this.prepage);
+          //this.addTodo(rs.data.count);
+          this.pages = Math.ceil(rs.data.count / this.prepage);
         }
       });
     }
