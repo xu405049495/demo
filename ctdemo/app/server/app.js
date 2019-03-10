@@ -3,7 +3,7 @@
    const KoaStaticCache=require("koa-static-cache");
    const router=require("./router/main.js")
    const KoaBodyParser=require("koa-bodyparser");
-   var cors = require('koa2-cors');
+   //var cors = require('koa2-cors');
 
    const app=new Koa();
    
@@ -11,7 +11,7 @@
    app.use(KoaBodyParser());
    
    
-   app.use(cors({
+   /* app.use(cors({
     origin: function(ctx) {
       if (ctx.url === '/test') {
         return false;
@@ -23,7 +23,7 @@
     credentials: true,
     allowMethods: ['GET', 'POST', 'DELETE'],
     allowHeaders: ['Content-Type', 'Authorization', 'Accept'],
-  }));
+  })); */
    app.use(router.routes());
 
    app.use(KoaStaticCache('/public',{

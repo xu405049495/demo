@@ -170,7 +170,7 @@ export default {
     registerSubmit() {
       axios({
         method: "post",
-        url: "http://localhost:8088/register",
+        url: "http://localhost:8080/api/register",
         data: this.reg
       }).then(res => {
         if (res.data.code) {
@@ -183,7 +183,7 @@ export default {
     loginSubmit() {
       axios({
         method: "post",
-        url: "http://localhost:8088/login",
+        url: "http://localhost:8080/api/login",
         data: this.log
         //withCredentials: true
       }).then(res => {

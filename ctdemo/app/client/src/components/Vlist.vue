@@ -64,7 +64,7 @@ export default {
 
       axios({
         method: "get",
-        url: "http://localhost:8088/",
+        url: "http://localhost:8080/api/",
         params:{
           page:this.page
         }
