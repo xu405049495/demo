@@ -1,7 +1,7 @@
 <template>
   <div>
     <div class="mb">
-      <div class="list" v-for="item in items" :key="index">
+      <div class="list" v-for="(item,index) in items" v-bind:key="index">
         <div class="d-flex w-100 justify-content-between">
           <h5 class="mb-1">{{item.title}}</h5>
           <small>{{moment(item.created_at)}}</small>

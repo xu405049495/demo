@@ -126,7 +126,11 @@ import Vheader from "./components/Vhead";
 import Vlist from "./components/Vlist";
 import Vpager from "./components/Vpager";
 export default {
-  data() {},
+  data() {
+    return {
+      
+    }
+  },
   created() {},
   components: {
     Vheader,
