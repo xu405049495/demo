@@ -12,9 +12,11 @@
   "license": "ISC",
   "dependencies": {
     "@vue/cli": "^3.4.1",
+    "keygrip": "^1.0.3",
     "koa": "^2.7.0",
     "koa-bodyparser": "^4.2.1",
     "koa-router": "^7.4.0",
+    "koa-session": "^5.10.1",
     "koa-static-cache": "^5.1.2",
     "koa2-cors": "^2.0.6",
     "md5": "^2.2.1",

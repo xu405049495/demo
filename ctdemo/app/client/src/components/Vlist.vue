@@ -1,14 +1,14 @@
 <template>
   <div>
     <div class="mb">
-      <div class="list" v-for="item in items" :key="index">
+      <div class="list" v-for="(item,index) in items" :key="index">
         <div class="d-flex w-100 justify-content-between">
           <h5 class="mb-1">{{item.title}}</h5>
           <small>{{moment(item.created_at)}}</small>
         </div>
         <p class="mb-1">{{item.content}}</p>
         <footer class="text-right">
-          <small>赞{{item.like_count}}</small>
+          <small @click="like(item.id)">赞{{item.like_count}}</small>
           <small>回复{{item.comment_count}}</small>
           <a href>我要回复</a>
         </footer>
@@ -29,7 +29,12 @@
       </li>
 
       <li class="page-item">
-        <span class="page-link" :class="{disabled:page==pages}" href="#" @click="getdata(page+1)">&gt;</span>
+        <span
+          class="page-link"
+          :class="{disabled:page==pages}"
+          href="#"
+          @click="getdata(page+1)"
+        >&gt;</span>
       </li>
     </ul>
   </div>
@@ -54,19 +59,44 @@ export default {
     moment: function(date) {
       return moment(date).format("YYYY-MM-DD HH:mm:ss");
     },
+    like(id) {
+      axios({
+        method: "post",
+        url: "http://localhost:8080/api/like",
+        data: {
+          id
+        }
+      }).then(res => {
+        if (res.data.code === 0) {
+          this.items.forEach(element => {
+            if(element.id===id){
+                  element.like_count=res.data.data.like_count;
+            }
+          });
+
+         // console.log(res.data.data.id);
+        }
+        console.log(res);
+        if(res.data.code === 3){
+         alert('不允许重复点赞');
+        }
+      
+
+      });
+    },
     getdata(p) {
       console.log(p);
-      if(p==this.page) return;
+      if (p == this.page) return;
       this.page = p || this.page;
-      // 控制this.page 在 1- this.pages 之间 
-      this.page=Math.max(1,this.page);
-      this.page=Math.min(this.pages,this.page);
+      // 控制this.page 在 1- this.pages 之间
+      this.page = Math.max(1, this.page);
+      this.page = Math.min(this.pages, this.page);
 
       axios({
         method: "get",
         url: "http://localhost:8080/api/",
-        params:{
-          page:this.page
+        params: {
+          page: this.page
         }
       }).then(rs => {
         if (rs.data.code === 0) {

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="app">
+        <button @click="add(3)">添加</button>
+        <button @click="filter11">过滤</button>
+        <ul>
+            <li v-for="(it, index) in item" :key="index">{{it}}</li>
+        </ul>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script>
+        new Vue({
+            el: '#app',
+            data: {
+                item: [1, 2, 3, 4]
+            },
+            methods: {
+                add(id) {
+                    this.item.push(id);
+                },
+                filter11() {
+                    this.item = this.item.filter(a => {
+                        return a > 3
+                    })
+                }
+            },
+        })
+    </script>
+</body>
+
+</html>

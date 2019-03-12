@@ -153,7 +153,28 @@ export default {
     Modal
   },
   created() {
-    console.log('112230'+ document.cookie);
+   // console.log('112230'+ document.cookie);
+    //console.log('112230'+ document.cookie);
+    
+    //组件初始化的过程中 判断localStorage 中是否有值。有值直接显示出来
+   // 这种方式极度的不安全 因为local中的数据可以修改
+    /* if(window.localStorage.getItem('uid')){
+
+      this.userInfo.uid=window.localStorage.getItem('uid');
+      this.userInfo.username=window.localStorage.getItem('username');
+    } */
+      let arr1 = document.cookie.split('; ');
+        arr1 = arr1.map( item => {
+            let arr2 = item.split('='); //['uid', 1]
+            return {
+                [arr2[0]]: arr2[1]
+            }
+        } );
+        let cookie = Object.assign({}, ...arr1);
+        console.log(cookie)
+
+        this.userInfo.username = cookie.username;
+        this.userInfo.uid = cookie.uid;
   },
   methods: {
     register() {
@@ -196,6 +217,9 @@ export default {
           this.modelName = "";
           this.userInfo.uid = res.data.data.id;
           this.userInfo.username = res.data.data.username;
+          //登录成功后将登录成功的信息写入localStorage中
+         // window.localStorage.setItem("uid",res.data.data.id);
+         // window.localStorage.setItem("username",res.data.data.username);
         }
       });
     }

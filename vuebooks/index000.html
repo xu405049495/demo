@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="app">
+
+    </div>
+
+
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script>
+        /* new Vue({
+             el:"#app",
+             data:{
+                text:"Getting to Know Vue.js" 
+             },
+             template:'<div>{{capitalizedText}}</div>',
+             computed:{
+                capitalizedText(){
+                    return this.text.toUpperCase();
+                }
+             }
+         }) */
+        /*  var app=new Vue({
+             el:"#app",
+             data:{
+                 myName:'Cool Name'
+             },
+             template:'<div> <div v-bind:name="myName">111</div> </div>'
+         }); */
+        /*  var app=new Vue({
+            el:'#app',
+            data:{
+                someHTML: '<h1 style="color:#41b883; background-color:#35495e;"> Getting to Know Vue.js</h1>'
+            },
+            template:`<div>
+ <div>{{ someHTML }}</div>
+ <div v-html="someHTML"></div>
+ </div>`
+        }) */
+        /*   new Vue({
+            el: "#app",
+            data: {
+                yes: true,
+                no: false,
+                maybe: 0,
+                show: 'yes',
+                dontShow: 'no',
+                yesWord: 'yes'
+
+            },
+            template: `
+         <div>
+ <h1>
+ 1: <span v-show="yes">Yes</span>
+ </h1>
+ <h1>
+ 2: <span v-show="no">No</span>
+ </h1>
+ <h1>
+ 3: <span v-show="show == 'yes'">Yes!</span>
+ </h1>
+ <h1>
+ 4: <span v-show="dontShow == 'yes'">No :(</span>
+ </h1>
+ <h1>
+ 5: <span v-show="show == yesWord">Yes!</span>
+ </h1>
+ <h1>
+ 6: <span v-show="0 == 1 - 1">Yes!</span>
+ </h1>
+ <h1>
+ 7: <span v-show="0 == 1 + 1">No :(</span>
+ </h1>
+ </div>
+         `
+        }) */
+        /*  new Vue({
+             el:'#app',
+             data:{
+                 yes:true,
+                 no:false
+             },
+             template:`<div>
+                 <h1>
+                     <span v-if="yes">Yes</span>
+                 </h1>
+                 <h1>
+                         <span v-if="no">No</span>
+                     
+                 </h1>
+                 
+                 </div>`
+         }) */
+         //控制整个模板的显示与否
+      /*   new Vue({
+            el: '#app',
+            data: {
+                yes: true,
+                no: false
+            },
+            template: `
+            <div>
+                    <template v-if="no">
+ <h1>Don't show this</h1>
+ <h2>It's a secret</h2>
+ </template>
+ <template v-if="yes">
+ <h1>Show this</h1>
+ <h2>We like to share</h2>
+ </template>
+           </div>
+            `
+        }) */
+    </script>
+</body>
+
+</html>
