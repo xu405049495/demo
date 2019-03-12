@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+
+<body>
+
+  <div id="app">
+    <!--   <span>计算  now</span>
+     <span>方法  now()</span> -->
+    <button @click="changeNum">改变num的值</button>
+    <br>
+    <button onclick="fn()">测试(每隔一秒钟执行一次)</button>
+  </div>
+
+  <script src="./js/vue.js"></script>
+  <script>
+    let v = new Vue({
+      el: '#app',
+      data() {
+        return {
+          num: 8
+        }
+      },
+      computed: {
+        getNum() {
+          console.log(new Date());
+          return this.num - 1;
+        },
+
+      },
+      methods: {
+        getNum2() {
+          console.log(new Date());
+          return this.num - 1;
+        },
+        changeNum() {
+          this.num = this.num + 5;
+        }
+      }
+    })
+
+    function fn() {
+      setInterval(function () {
+        //console.log('计算属性' + v.getNum);
+        console.log('普通方法' + v.getNum2());
+      }, 1000)
+
+    }
+  </script>
+</body>
+
+</html>

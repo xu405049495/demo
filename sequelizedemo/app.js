@@ -38,15 +38,10 @@
     /* let rs=await todos.count();
     console.log(rs); */
 
-        /*  let rs = await todos.findAndCountAll({
+    /*       let rs = await todos.findAndCountAll({
              limit: 2
          });
-         console.log(rs.count);
-         console.log(rs.rows.length);
-         rs.rows.forEach((arr)=>{
-             console.log(arr.title+arr.done);
-         }) */
-
+         console.log(rs.rows); */
 
     /* let rs =await todos.findAll({
         offset:2,
@@ -113,9 +108,8 @@
           where: {
             [Sequelize.or]: [{title:'足球'}, {title:'篮球'}]
           }
-<<<<<<< HEAD
         }); */
-    let ss = await todos.findAll({
+  /*   let ss = await todos.findAll({
         where: {
             [Sequelize.Op.or]: [{
                 count: {
@@ -128,7 +122,7 @@
             }]
         }
     });
-    console.log(ss.length);
+    console.log(ss.length); */
     /*  let rs=  await  todos.findAll({
           where: {
             count: {
@@ -163,38 +157,6 @@
          freezeTableName: true,
          tableName: 'contents'
      }); */
-=======
-      }
-    })
-    console.log(rs);
-    console.log(rs.length); */
-    // 关联查询
-    /* const ContentModel = sequelize.define('contents', {
-        id: {
-            type: Sequelize.INTEGER,
-            primaryKey: true,
-            allowNull: true,
-            autoIncrement: true
-        },
-        uid: { // 其他的表的字段，把当前字段定义为外键
-            type: Sequelize.INTEGER(10),
-            defaultValue: 0,
-            references: {
-                model: todos,
-                key: 'id'
-            }
-        },
-        desc: {
-            type: Sequelize.STRING(255),
-            allowNull: true,
-            defaultValue: ''
-        }
-    }, {
-        timestamps: false,
-        freezeTableName: true,
-        tableName: 'contents'
-    }); */
->>>>>>> 624ca1296a575d04422d23bdef9fe76ad87dfe8a
 
     /*     let rs = await ContentModel.belongsTo(todos, {
             foreignKey: 'uid'
@@ -207,7 +169,6 @@
           include: [todos]
       });
 
-<<<<<<< HEAD
       console.log(data2.todo.title);
       console.log(data2.desc);
       console.log(data2); */
@@ -223,19 +184,6 @@
 
         console.log(data3); */
 
-=======
-  /*    todos.hasMany(ContentModel, {
-        foreignKey: 'uid'
-    });
-
-    let data3 = await todos.findById(3, {
-        include: [ContentModel]
-    }); */
-  
-
-   /*  console.log(data3);
- */
->>>>>>> 624ca1296a575d04422d23bdef9fe76ad87dfe8a
 })();
 
 
