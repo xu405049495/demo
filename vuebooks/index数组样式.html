@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <style>
+    .error {
+      color: red;
+      border: red 3px solid;
+      }
+    .no-error {
+      color: green;
+      border: green 3px solid;
+     }
+     .active { font-size: 1.5em; }
+     </style>
+</head>
+
+<body>
+  <div id="app">
+    <template>
+      <div>
+        <h4>One CSS Class Bound</h4>
+        <input type="text" v-model="input" v-bind:class="['activeClass',{'error':inputError}]" />
+      </div>
+    </template>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  <script>
+    new Vue({
+      el: '#app',
+      data() {
+        return {
+           input: '',
+          inputError: null,
+          activeClass: 'active',
+          errorClass: 'error'
+        }
+      },
+      watch: {
+        input() {
+          var results = parseInt(this.input);
+          if (isNaN(results)) {
+            this.inputError = true;
+          } else {
+            this.inputError = false;
+          }
+        }
+      }
+    })
+  </script>
+</body>
+
+</html>

@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+
+<body>
+  <div id="app">
+  </div>
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  <script>
+    var app = new Vue({
+      el: '#app',
+      data: {
+        fontSize: 0,
+        fontSizeObject: {
+          fontSize: '0px'
+        },
+        fontColorObject: {
+          color: 'red'
+        }
+      },
+      watch: {
+        fontSize: function () {
+          this.fontSizeObject.fontSize = this.fontSize + 'px';
+        }
+      },
+      template: `
+  <div>
+  <h4>Dynamic Font Size with an object</h4>
+  <input type="number" v-model.number="fontSize" />
+  <p v-bind:style="[fontSizeObject, fontColorObject]">
+  Getting to Know Vue.js
+  </p>
+  </div>
+  `
+    });
+  </script>
+
+</body>
+
+</html>

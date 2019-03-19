@@ -1,0 +1,45 @@
+v-model="msg"<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+
+<body>
+  <div id="app">
+    <h4>Dynamic Font Size</h4>
+    <input v-model.number="fontSize" type="number" />
+    <p :style="[fontSizeObj,fontColorObject]">
+      AAA
+    </p>
+
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  <script>
+    new Vue({
+      el: '#app',
+      data() {
+        return {
+          fontSize: 0,
+          fontSizeObj: {
+            fontSize: '0px'
+          },
+          fontColorObject: {
+            color: 'red'
+          }
+        }
+      },
+      watch: {
+        fontSize() {
+          this.fontSizeObj.fontSize = this.fontSize + 'px';
+        }
+      }
+    })
+  </script>
+</body>
+
+</html>

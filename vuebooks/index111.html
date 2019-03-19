@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+
+<body>
+  <div id="app">
+
+  </div>
+
+
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  <script>
+    let app = new Vue({
+      el: '#app',
+      data() {
+        return {
+          book: {
+            title: 'Getting to Know Vue.js',
+            publisher: 'Apress',
+            year: 2018
+          }
+        }
+      },
+      watch: {
+        book:{
+          handler(newBook, oldBook){
+             console.log('Book Changed');
+             console.log(new Date());
+          },
+         // deep:true
+         immediate:true
+        }
+      },
+      template:`<div>
+     <label><input type="text" v-model="book.title" /></label>
+     <ul>
+      <li v-for="(value,prop) in book">{{prop}}:{{value}}</li>
+     </ul>
+
+
+      </div>
+      `
+
+    })
+  </script>
+
+</body>
+
+</html>
