@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="app">
+        <!--     <h4>Select</h4>
+            <select v-model="select"  multiple>
+              <option disabled value="">Select your S </option>
+              <option value="startrek">Star Trek</option>
+                 <option value="starwars">Star Wars</option> 
+                 <option value="firefly">Firefly</option> 
+                 <option value="drwho">Dr. Who</option>
+            </select>
+            <p>
+              <strong>Selected:</strong> {{select}}
+            </p> -->
+        <!--  <h4>Lazy</h4>
+        <input @change="fn"  type="text" />
+        <p>
+            <strong>Lazy:</strong> {{lazy}}
+        </p> -->
+        <h4>No Trim</h4>
+        <input v-model="noTrim" type="text" />
+        <p>
+            <strong>No Trim:</strong> "{{noTrim.length}}"
+        </p>
+        <h4>Trim</h4>
+        <input v-model.trim="trim" type="text" />
+        <p>
+            <strong>Trim:</strong> "{{trim.length}}"
+        </p>
+
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script>
+        new Vue({
+            el: '#app',
+            data: {
+                lazy: '',
+                noTrim:'Vue.js      ',
+                trim:'Vue.js          '
+
+            },
+            methods: {
+                /*  fn(event){
+                  // console.log(event.target.value);
+                  this.lazy=event.target.value;
+                 } */
+                fn(event) {
+                    this.lazy = event.target.value;
+                }
+            },
+
+        })
+    </script>
+
+</body>
+
+</html>

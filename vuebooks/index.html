@@ -2,54 +2,63 @@
 <html lang="en">
 
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>Document</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
 </head>
 
 <body>
-  <div id="app">
 
-  </div>
+    <div id="app1">
+        <h1>App1</h1>
+        <label>Search:
+            <input type="text" v-model="searchText" v-on:keyup.enter.esc="search" /></label>
+
+        <h5>Results: <small>{{shipCount}}</small></h5>
+
+        <ul>
+            <li v-for="ship in ships">
+                {{ship.name}}
+            </li>
+        </ul>
+    </div>
+    <div id="app2">
+        <h1>App2</h1>
+        <label>Search:
+            <input type="text" v-model="searchText" v-on:keyup.enter.esc="search" /></label>
+
+        <h5>Results: <small>{{shipCount}}</small></h5>
+        <h5>Starfighters Count: <small>{{starfightersCount}}</small></h5>
+
+        <ul>
+            <li v-for="ship in ships">
+                {{ship.name}} <button v-on:click="viewShip(ship.url)">view</button>
+            </li>
+        </ul>
+
+        <div v-show="currentShip.name">
+            <h2>Current Ship</h2>
+            <h3>Name: <small>{{currentShip.name}}</small></h3>
+            <h3>Manufacturer: <small>{{currentShip.manufacturer}}</small></h3>
+            <h3>Class: <small>{{currentShip.starship_class}}</small></h3>
+            <h3>Crew Size: <small>{{currentShip.crew}}</small></h3>
+
+            <h2>Pilots</h2>
+            <ul>
+                <li v-for="pilot in pilots">
+                    <h3>Name: <small>{{pilot.name}}</small></h3>
+                </li>
+            </ul>
+        </div>
+    </div>
 
 
-  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
-  <script>
-    let app = new Vue({
-      el: '#app',
-      data() {
-        return {
-          book: {
-            title: 'Getting to Know Vue.js',
-            publisher: 'Apress',
-            year: 2018
-          }
-        }
-      },
-      watch: {
-        book:{
-          handler(newBook, oldBook){
-             console.log('Book Changed');
-             console.log(new Date());
-          },
-         // deep:true
-         immediate:true
-        }
-      },
-      template:`<div>
-     <label><input type="text" v-model="book.title" /></label>
-     <ul>
-      <li v-for="(value,prop) in book">{{prop}}:{{value}}</li>
-     </ul>
-
-
-      </div>
-      `
-
-    })
-  </script>
-
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script src="https://unpkg.com/vuex"></script>
+    <script src="https://cdn.jsdelivr.net/npm/es6-promise@4/dist/es6-promise.auto.js"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script src="./app.js"></script>
 </body>
 
 </html>

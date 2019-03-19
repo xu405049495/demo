@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+     <div id="app">
+        <h4>Radios Dynamic Options</h4>
+        <template v-for="(option, index) in inputs.radiosDynamicOptions">
+         <input v-model="inputs.radiosDynamic" type="radio" 
+        v-bind:value="option.value" v-bind:id="option.value" />
+         <label v-bind:for="option.value">{{option.label}}</label>
+         <br v-if="index < inputs.radiosDynamicOptions.length">
+        </template>
+        <p>
+         <strong>Radios:</strong> {{inputs.radiosDynamic}}
+        </p>
+
+        
+     </div>
+
+     <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+     <script>
+         new Vue({
+             el:'#app',
+             data:{
+                 inputs:{
+                    radiosDynamic:'',
+                    checkboxes:[],
+                    radiosDynamicOptions:[{text:1,value:'测试',label:'da'},{text:2,value:'测试2',label:'da1'}]
+                 }
+             }
+         })
+     </script>
+</body>
+</html>

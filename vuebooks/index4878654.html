@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="app">
+        <!--  <h4>Text</h4>
+            <input type="text" v-model.number="inputs.numberAsNumber" />
+            <p>
+             <strong>Text:</strong> {{inputs.numberAsNumber}}
+            </p>
+            <h4>Date</h4>
+            <input type="text" v-model.date="inputs.date" /> -->
+        <!--  <h4>Date</h4>
+        <input type="date" v-model="inputs.date" />
+        <p>
+            <strong>Date:</strong> {{inputs.date}}
+        </p> -->
+        <!-- <p>text</p>
+        <input v-model="inputs.numberAsString" type="number" />
+        {{typeof inputs.numberAsString }} -->
+        <!--  <p>number</p>
+        <input v-model.number="inputs.numberAsNumber" type="number" />
+        {{typeof inputs.numberAsNumber }} -->
+        <!--  <h4>Date</h4>
+        <input type="date" v-model="inputs.date" />
+        <p>
+            <strong>Date:</strong> {{inputs.date}}
+        </p> -->
+        <h4>Checkbox</h4>
+        <input type="checkbox" v-model="inputs.checkbox" value="myCheckBox" id="myCheckBox" />
+        <label for="myCheckBox">My Check Box</label>
+        <p>
+            <strong>Checkbox:</strong> {{inputs.checkbox}}
+        </p>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js">
+    </script>
+    <script>
+        let app = new Vue({
+            el: '#app',
+            data: {
+                inputs: {
+                    text: '',
+                    numberAsString: 0,
+                    numberAsNumber: 0,
+                    date: '',
+                    password: '',
+                    checkbox: false,
+                    checkboxes: [],
+                    radios: '',
+                    radiosPreset: 'rollout',
+                    radiosDynamic: '',
+                    radiosDynamicOptions: [{
+                            label: 'Blue',
+                            value: 'Light'
+                        },
+                        {
+                            label: 'Red',
+                            value: 'Dark'
+                        }
+                    ],
+                    file: '',
+                    select: '',
+                    multiselect: []
+                },
+            }
+        })
+    </script>
+</body>
+
+</html>
