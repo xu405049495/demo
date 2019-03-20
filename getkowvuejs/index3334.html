@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="app">
+        <h1>Float Directive</h1>
+        <span v-float-right="200">
+            Floated Right
+        </span>
+
+    </div>
+    <!--  <div id="app">
+            <h1>Floating Directive</h1>
+            <span v-floatright>
+            Floated Right
+            </span>
+            <span v-floatright>
+            Floated Right too
+            </span>
+     </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script>
+        Vue.directive('floatright', {
+            inserted: function (el) {
+                el.style.float = 'right';
+            }
+        });
+       var app=  new Vue({
+            el:'#app',
+        
+        })
+    </script> -->
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script>
+        Vue.directive('floatRight', {
+            inserted: function (el, binding) {
+                el.style.float = 'right';
+                if (binding.value) {
+                    el.style.marginRight = `${binding.value}px`;
+                }
+            }
+        });
+        var app = new Vue({
+            el: '#app'
+
+        })
+    </script>
+</body>
+
+</html>

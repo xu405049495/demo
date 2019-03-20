@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="app">
+        <!--  <ourfirsthead></ourfirsthead>
+      <our-first-head></our-first-head> -->
+        <!-- <OurHeader></OurHeader> -->
+        <!--  <our-header></our-header> -->
+        <!--   <ourheader></ourheader> -->
+        <!-- <our-second-header></our-second-header> -->
+        <!--  <third-header :text='aaa'></third-header> -->
+        <fiveheader text='123app'></fiveheader>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <!--  <script>
+     Vue.component('OurHeader', {
+         template:'<h1>First</h1>'
+     })
+     new Vue({
+         el:'#app'
+     })
+    </script> -->
+    <!-- <script>
+        Vue.component('OurSecondHeader', {
+            data: function () {
+                return {
+                    text: 'App Header 2'
+                };
+            },
+            template: `
+        <h1 v-on:click="text = text.split('').reverse().join('')">{{text}}</h1>
+        `
+        }); -->
+    <script>
+        /*  Vue.component('ThirdHeader', {
+            props: ['text'],
+            template: '<h1>{{text}}</h1>'
+        })
+        new Vue({
+            el: '#app',
+            data() {
+                return {
+                    aaa:'asdasd'
+                }
+            },
+        }) */
+        /*  Vue.component('fiveheader', {
+             props: {
+                 text: {
+                     type: String,
+                     default: 'App test 555',
+                     required: false,
+                     validator: function (value) {
+                         return value.toLowerCase().indexOf('app') > -1;
+
+                     }
+                 }
+             },
+             template:'<h1>{{text}}</h1>'
+         }); */
+        /* Vue.component('SearchBox', {
+            template: `
+ <div>
+ <label>Search:</label>
+ <input type="text"
+ v-on:keyup.enter.esc="$emit('input', $event.target.value)" />
+ </div>
+ `
+        }); */
+
+        Vue.component('CurrentShip', {
+            computed: {
+                ship: function () {
+                    return this.$store.state.ship;
+                }
+            },
+            template: `
+ <div v-show="ship.name">
+ <h2>Current Ship</h2>
+ <ShipStat label="Name" v-bind:value="ship.name" />
+ <ShipStat label="Manufacturer" v-bind:value="ship.manufacturer" />
+ <ShipStat label="Class" v-bind:value="ship.starship_class" />
+ <ShipStat label="Crew Size" v-bind:value="ship.crew" />
+ <slot></slot>
+ </div>
+ `
+        });
+        new Vue({
+            el: '#app'
+        })
+    </script>
+
+
+
+</body>
+
+</html>

@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="app">
+        <app-header :text='appLabel'></app-header>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script>
+        var AppHeader = {
+            props: {
+                text: {
+                    type: String,
+                    default: 'App Header'
+                }
+            },
+            template: `
+ <h1>{{text}}</h1>
+ `
+        };
+        var app=new Vue({
+            el:'#app',
+            components:{
+                AppHeader:AppHeader
+            },
+            data () {
+                return {
+                    appLabel: 'Ship Search'
+                }
+            }
+        })
+    </script>
+</body>
+
+</html>
