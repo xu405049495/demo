@@ -10,71 +10,68 @@
 
 <body>
   <div id="app">
-    <!--  <oursecondheader></oursecondheader> -->
-    <!-- <secondheader text='cacada'></secondheader> -->
-   <!--  <secondheader text='cacada'></secondheader> -->
-  <!--  <thirdheader :text='appLabel'></thirdheader> -->
-  <!-- <fourheader text='aa'></fourheader> -->
-  <!-- <fiveheader></fiveheader> -->
-  <fiveheader text='123qwewqapp'></fiveheader>
+    <div id="nav">
+      <router-link to="/">
+        Home
+      </router-link> |
+      <router-link to="/contact-us">
+        Contact Us
+      </router-link>
+    </div>
+    <router-view />
   </div>
 
   <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  <script src="https://unpkg.com/vue-router/dist/vue-router.js"></script>
   <script>
-    /*   Vue.component('oursecondheader', {
-      data: function () {
-        return {
-          text: 'App Header 2'
-        };
-      },
+    const main = {
       template: `
-    <h1 v-on:click="text = text.split('').reverse().join('')">{{text}}</h1> 
-  `
-    }); */
-    /*  Vue.component('secondheader', {
-     props: ['text'],
+ <p>Welcome to <strong>Getting to Know Vue.js</strong></p>
+ `
+    };
+    const contactUs = {
       template: `
-    <h1>{{text}}</h1> 
-  `
-    });
-    var app = new Vue({
-      el: '#app',
-    }) */
-    /* Vue.component('thirdheader', {
-      props: ['text'],
-      template:'<div> {{text}}</div>'
-    })
-    var app = new Vue({
-      el: '#app',
-      data: {
-        appLabel: 'App AAA'
-      }
-     
-    }); */
-   /*  Vue.component('fourheader', {
-      props: {
-        text:String
-      },
-      template:'<h1>{{text}}</h1>'
-    }) */
-    Vue.component('fiveheader', {
-      props: {
-        text:{
-          type:String,
-          default:'App 555',
-          required:false,
-          validator(value){
-            return value.toLowerCase().indexOf('app') > -1;
-          }
+ <p>Contact Us @ <strong>Getting to Know Vue.js</strong></p>
+ `
+    };
+    const FourOhFour = {
+      computed: {
+        url: function () {
+          return this.$router.currentRoute.path;
         }
       },
-      template:'<h1>{{text}}</h1>'
-    })
-    var app= new Vue({
-      el:'#app'
-    })
-  </script>
+      template: `
+ <div>
+ <p>Sorry, URL not found : {{url}} </p>
+ <p>¯\\_(ツ)_/¯</p>
+ </div>
+ `
+    };
+    const routes = [{
+        path: '/',
+        name: 'main',
+        component: main
+      },
+      {
+        path: '/contact-us',
+        name: 'contact-us',
+        component: contactUs
+      },
+      {
+        path: '/*',
+        name: 'notFound',
+        component: FourOhFour
+      }
+    ];
+    let router = new VueRouter({
+      routes
+    });
+    var app = new Vue({
+      router,
+      el: '#app'
 
+    });
+  </script>
 </body>
 
 </html>

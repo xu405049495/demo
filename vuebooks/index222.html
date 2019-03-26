@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+
+<body>
+  <div id="app">
+    <!--  <oursecondheader></oursecondheader> -->
+    <!-- <secondheader text='cacada'></secondheader> -->
+   <!--  <secondheader text='cacada'></secondheader> -->
+  <!--  <thirdheader :text='appLabel'></thirdheader> -->
+  <!-- <fourheader text='aa'></fourheader> -->
+  <!-- <fiveheader></fiveheader> -->
+  <fiveheader text='123qwewqapp'></fiveheader>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  <script>
+    /*   Vue.component('oursecondheader', {
+      data: function () {
+        return {
+          text: 'App Header 2'
+        };
+      },
+      template: `
+    <h1 v-on:click="text = text.split('').reverse().join('')">{{text}}</h1> 
+  `
+    }); */
+    /*  Vue.component('secondheader', {
+     props: ['text'],
+      template: `
+    <h1>{{text}}</h1> 
+  `
+    });
+    var app = new Vue({
+      el: '#app',
+    }) */
+    /* Vue.component('thirdheader', {
+      props: ['text'],
+      template:'<div> {{text}}</div>'
+    })
+    var app = new Vue({
+      el: '#app',
+      data: {
+        appLabel: 'App AAA'
+      }
+     
+    }); */
+   /*  Vue.component('fourheader', {
+      props: {
+        text:String
+      },
+      template:'<h1>{{text}}</h1>'
+    }) */
+    Vue.component('fiveheader', {
+      props: {
+        text:{
+          type:String,
+          default:'App 555',
+          required:false,
+          validator(value){
+            return value.toLowerCase().indexOf('app') > -1;
+          }
+        }
+      },
+      template:'<h1>{{text}}</h1>'
+    })
+    var app= new Vue({
+      el:'#app'
+    })
+  </script>
+
+</body>
+
+</html>
